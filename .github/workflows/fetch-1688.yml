@@ -16,17 +16,20 @@ jobs:
         with:
           node-version: 18
 
-      # ---------- 缓存 ----------
+            # ---------- Cache ----------
       - name: Cache npm & puppeteer
-        uses: actions/cache@v4           # ← 与 name 同级别，前面 6 空格
+        id: cache
+        uses: actions/cache@v4
         with:
-          path: |                        # ← path 下的内容再缩进 2 空格
+          path: |
             ~/.npm
             ~/.cache/puppeteer
-          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+          key: linux-npm-puppeteer-cache-v1       # 固定常量；将来升级依赖时手动改 -v2
           restore-keys: |
-            ${{ runner.os }}-npm-
-      # -------------------------
+            linux-npm-puppeteer-cache-
+      # ---------------------------
+      - run: echo "Cache hit? ${{ steps.cache.outputs.cache-hit }}"
+
 
       - run: npm install
 
