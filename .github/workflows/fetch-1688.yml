@@ -15,6 +15,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 18
+- name: Cache npm & puppeteer
+  uses: actions/cache@v4
+  with:
+    path: |
+      ~/.npm
+      ~/.cache/puppeteer
+    key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+    restore-keys: |
+      ${{ runner.os }}-npm-
 
       - run: npm install
 
