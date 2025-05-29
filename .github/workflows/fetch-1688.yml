@@ -15,15 +15,18 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 18
-- name: Cache npm & puppeteer
-  uses: actions/cache@v4
-  with:
-    path: |
-      ~/.npm
-      ~/.cache/puppeteer
-    key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
-    restore-keys: |
-      ${{ runner.os }}-npm-
+
+      # ---------- 缓存 ----------
+      - name: Cache npm & puppeteer
+        uses: actions/cache@v4           # ← 与 name 同级别，前面 6 空格
+        with:
+          path: |                        # ← path 下的内容再缩进 2 空格
+            ~/.npm
+            ~/.cache/puppeteer
+          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+      # -------------------------
 
       - run: npm install
 
