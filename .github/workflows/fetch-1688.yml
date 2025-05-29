@@ -1,0 +1,28 @@
+name: fetch-1688
+on:
+  workflow_dispatch:      # 手动触发
+  schedule:
+    - cron:  '0 2 * * *'  # 每天 10:00 北京时间
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with: { node-version: 18 }
+
+      - run: npm ci
+
+      - name: run crawler
+        env: { COOKIE_1688: ${{ secrets.COOKIE_1688 }} }
+        run: node tools/crawl-1688.js
+
+      - name: commit data
+        run: |
+          git config --local user.email "bot@github"
+          git config --local user.name  "Data Bot"
+          git add public/data/products.json
+          git commit -m "chore(data): auto-update" || echo "No changes"
+          git push
