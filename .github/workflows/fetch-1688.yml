@@ -17,9 +17,9 @@ jobs:
           node-version: 18
           
       - name: Set fast puppeteer mirror
-      run: |
-        echo "PUPPETEER_DOWNLOAD_HOST=https://npmmirror.com/mirrors" >> $GITHUB_ENV
-        echo "PUPPETEER_DOWNLOAD_PATH=chromium" >> $GITHUB_ENV
+        run: |
+          echo "PUPPETEER_DOWNLOAD_HOST=https://npmmirror.com/mirrors" >> $GITHUB_ENV
+          echo "PUPPETEER_DOWNLOAD_PATH=chromium" >> $GITHUB_ENV
 
             # ---------- Cache ----------
       - name: Cache npm & puppeteer
