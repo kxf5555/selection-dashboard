@@ -18,7 +18,7 @@ jobs:
           
       - name: Set fast puppeteer mirror
         run: |
-          echo "PUPPETEER_DOWNLOAD_BASE_URL=https://registry.npmmirror.com/-/binary/chromium" >> $GITHUB_ENV
+          echo "PUPPETEER_DOWNLOAD_BASE_URL=https://registry.npmmirror.com/-/binary/chromium-browser-snapshots" >> $GITHUB_ENV
 
 
             # ---------- Cache ----------
