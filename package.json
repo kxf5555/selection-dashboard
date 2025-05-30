@@ -1,22 +1,22 @@
 {
   "name": "selection-dashboard",
-  "version": "0.1.0",
-  "type": "module",
+  "version": "0.2.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-  "puppeteer": "^21.7.0",
-  "puppeteer-extra": "^3.3.6",
-  "puppeteer-extra-plugin-stealth": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "lucide-react": "^0.377.0",
     "recharts": "^2.9.0",
-    "@vitejs/plugin-react": "^4.2.0"
+    "@vitejs/plugin-react": "^4.2.0",
+    "puppeteer-core": "^21.7.0",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.1"
   },
   "devDependencies": {
     "vite": "^5.1.0",
