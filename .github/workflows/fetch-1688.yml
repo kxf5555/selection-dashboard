@@ -1,40 +1,28 @@
 name: fetch-1688
-
 on:
-  workflow_dispatch:          # 手动触发
+  workflow_dispatch:
   schedule:
-    - cron: "0 2 * * *"       # 每天 10:00 北京时间
+    - cron: '0 2 * * *'   # 每天 10:00 北京时间
 
 jobs:
   crawl:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
-        with:
-          node-version: 18
-          
-      - name: Set fast puppeteer mirror
+        with: { node-version: 18 }
+
+      - name: Install system Chrome
         run: |
-          echo "PUPPETEER_DOWNLOAD_BASE_URL=https://registry.npmmirror.com/-/binary/chromium-browser-snapshots" >> $GITHUB_ENV
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
 
-
-            # ---------- Cache ----------
-      - name: Cache npm & puppeteer
-        id: cache
+      - name: Cache npm
         uses: actions/cache@v4
         with:
-          path: |
-            ~/.npm
-            ~/.cache/puppeteer
-          key: linux-npm-puppeteer-cache-v1       # 固定常量；将来升级依赖时手动改 -v2
-          restore-keys: |
-            linux-npm-puppeteer-cache-
-      # ---------------------------
-      - run: echo "Cache hit? ${{ steps.cache.outputs.cache-hit }}"
-
+          path: ~/.npm
+          key: linux-npm-cache-v1
 
       - run: npm install
 
