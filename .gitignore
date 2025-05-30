@@ -1,0 +1,6 @@
+# 在项目根运行
+echo 'node_modules/\npackage-lock.json\n.DS_Store' > .gitignore
+git add .gitignore
+git rm -r --cached node_modules package-lock.json   # 把已提交的文件移出索引
+git commit -m "chore: add .gitignore"
+git push
